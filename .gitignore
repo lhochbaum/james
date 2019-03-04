@@ -2,7 +2,8 @@
 # Edit at https://www.gitignore.io/?templates=python,sublimetext
 
 ### Custom ###
-creds.json
+conf.json
+images/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
