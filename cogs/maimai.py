@@ -3,6 +3,7 @@ import asyncio
 import resources.config as conf
 from discord.ext import commands
 import urllib.request
+import random
 
 # get clientID and client secret from our config.
 client_id = conf.config_read()["clientId"]
@@ -41,8 +42,13 @@ def setup(bot):
 
 # we are getting a single trending post and returning title and its image.
 def random_maimai():
-	for submission in reddit.subreddit(subreddit).hot(limit=1):
-		return { "title": submission.title, "image": submission.url }
+	posts = reddit.subreddit(subreddit).hot(limit=100)
+	rand = random.randint(0, 100)
+
+	for i, post in enumerate(posts):
+		if i == rand:
+				post = posts.next()
+				return { "title": post.title, "image": post.url }
 
 # downloads the file and returns the path.
 def download(url):
