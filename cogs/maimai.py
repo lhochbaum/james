@@ -42,13 +42,8 @@ def setup(bot):
 
 # we are getting a single trending post and returning title and its image.
 def random_maimai():
-	posts = reddit.subreddit(subreddit).hot(limit=100)
-	rand = random.randint(0, 100)
-
-	for i, post in enumerate(posts):
-		if i == rand:
-			post = posts.next()
-			return { "title": post.title, "image": post.url }
+	post = reddit.subreddit(subreddit).random()
+	return { "title": post.title, "image": post.url }
 
 # downloads the file and returns the path.
 def download(url):
