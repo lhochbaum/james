@@ -47,8 +47,8 @@ def random_maimai():
 
 	for i, post in enumerate(posts):
 		if i == rand:
-				post = posts.next()
-				return { "title": post.title, "image": post.url }
+			post = posts.next()
+			return { "title": post.title, "image": post.url }
 
 # downloads the file and returns the path.
 def download(url):
