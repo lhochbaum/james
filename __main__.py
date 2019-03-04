@@ -15,6 +15,12 @@ with open("creds.json") as file:
 # set up the command bot.
 bot = commands.Bot(command_prefix='!', description=description)
 
+# small command printing the repo URL.
+@bot.command()
+@asyncio.coroutine
+def source():
+	yield from bot.say("https://github.com/lhochbaum/james")
+
 # remove the help command.
 bot.remove_command("help")
 
