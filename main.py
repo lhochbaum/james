@@ -26,6 +26,7 @@ bot.remove_command("help")
 # load cogs.
 bot.load_extension("cogs.tlpd")
 bot.load_extension("cogs.maimai")
+bot.load_extension("cogs.egirl")
 
 # finally run the bot!
 bot.run(conf.config_read()["token"])
