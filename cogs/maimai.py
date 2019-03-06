@@ -9,14 +9,13 @@ import random
 client_id = conf.config_read()["clientId"]
 client_secret = conf.config_read()["clientSecret"]
 
-# get the meme channel.
-maimai_channel = conf.config_read()["maimaiChannel"]
-
 # initialize reddit.
 user_agent = "JamesBot v1.0 (github.com/lhochbaum)"
 subreddit = "ich_iel"
 reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent=user_agent)
 
+# implements the !maimai command which posts a random image of r/ich_iel inside the 
+# specified maimai channel.
 class MaimaiCog:
 	def __init__(self, bot):
 		self.bot = bot
@@ -27,7 +26,7 @@ class MaimaiCog:
 		channel = ctx.message.channel
 
 		# check for the meme channel.
-		if not channel.id == conf.config_read()["maimaiChannel"]:
+		if not channel.name == "maimais":
 			return
 
 		# download a random meme.

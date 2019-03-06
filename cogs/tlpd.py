@@ -4,7 +4,7 @@ import asyncio
 # emoji ID for :tlpdont:.
 tlpdont = "<:tlpdont:551898126919663636>"
 
-# TLPD cog which contains some trolly stuff.
+# if somebody talks about the TLPD, the bot will respond with :tlpdont:.
 class TlpdCog:
 	# initialize the cog.
 	def __init__(self, bot):
