@@ -17,6 +17,9 @@ class FastDelCog:
 	@commands.command(pass_context=True)
 	@asyncio.coroutine
 	def fastdel(self, ctx):
+		if not ctx.message.author.server_permissions.manage_messages:
+			return
+
 		# invert the active flag.
 		self.active = not self.active
 		yield from self.bot.say("Schnelles Löschen {}!".format("aktiv" if self.active else "deaktiviert"))
