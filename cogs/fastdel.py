@@ -29,7 +29,7 @@ class FastDelCog:
 	def on_message(self, message):
 		# fast deletion will only work for messages by users who are not permitted to
 		# manage channels.
-		if not message.author.server_permissions.manage_messages:
+		if not message.author.server_permissions.manage_messages and self.active:
 			yield from self.bot.add_reaction(message, "❌")
 
 	# handles clicking on reactions.
