@@ -31,6 +31,7 @@ bot.load_extension("cogs.since")
 bot.load_extension("cogs.praise")
 bot.load_extension("cogs.fastdel")
 bot.load_extension("cogs.doubt")
+bot.load_extension("cogs.w2g")
 
 # finally run the bot!
 bot.run(conf.config_read()["token"])
