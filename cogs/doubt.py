@@ -1,15 +1,14 @@
 import asyncio
 from discord.ext import commands
 
-class DoubtCog:
+class DoubtCog(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
 	@commands.command(pass_context=True)
-	@asyncio.coroutine
-	def doubt(self, ctx):
-		msg = yield from self.bot.say("Reagiere mit \"🤔\", um anzuzweifeln.")
-		yield from self.bot.add_reaction(msg, "🤔")
+	async def doubt(self, ctx):
+		msg = await ctx.message.channel.send("Reagiere mit \"🤔\", um anzuzweifeln.")
+		await msg.add_reaction("🤔")
 		
 def setup(bot):
 	bot.add_cog(DoubtCog(bot))		

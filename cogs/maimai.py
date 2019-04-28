@@ -1,9 +1,6 @@
-import praw
-import asyncio
+import praw, asyncio, urllib.request, random, discord
 import resources.config as conf
 from discord.ext import commands
-import urllib.request
-import random
 
 # get clientID and client secret from our config.
 client_id = conf.config_read()["clientId"]
@@ -16,13 +13,12 @@ reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agen
 
 # implements the !maimai command which posts a random image of r/ich_iel inside the 
 # specified maimai channel.
-class MaimaiCog:
+class MaimaiCog(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
 	@commands.command(pass_context=True)
-	@asyncio.coroutine
-	def maimai(self, ctx):
+	async def maimai(self, ctx):
 		channel = ctx.message.channel
 
 		# check for the meme channel.
@@ -34,7 +30,7 @@ class MaimaiCog:
 		file = download(maimai["image"])
 
 		# send the file.
-		yield from self.bot.send_file(destination=ctx.message.channel, fp=file, content=maimai["title"])
+		await channel.send(file=discord.File(file))
 
 def setup(bot):
 	bot.add_cog(MaimaiCog(bot))

@@ -15,13 +15,12 @@ options.add_argument("--disable-gpu")
 # get the chrome webdriver.
 driver = webdriver.Chrome(chrome_options=options)
 
-class W2gCog:
+class W2gCog(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
 	@commands.command(pass_context=True)
-	@asyncio.coroutine
-	def w2g(self, ctx, arg):
+	async def w2g(self, ctx, arg):
 		# visit watch2gether.
 		driver.get("https://watch2gether.com/")
 
@@ -31,7 +30,7 @@ class W2gCog:
 
 		# post the channel.
 		url = driver.current_url
-		yield from self.bot.say(url)
+		await ctx.message.channel.send(url)
 
 		# enter video URL in search bar and press enter.
 		input = driver.find_element_by_id("search-bar-input")

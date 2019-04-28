@@ -3,15 +3,14 @@ from discord.ext import commands
 from datetime import datetime
 
 # implements the !since command which displays the date of the last restart.
-class SinceCog:
+class SinceCog(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
 	# handler for the !since command.
 	@commands.command(pass_context=True)
-	@asyncio.coroutine
-	def since(self, ctx):
-		yield from self.bot.say("Letzter Neustart: `{}`.".format(timestamp))
+	async def since(self, ctx):
+		await ctx.message.channel.send("Letzter Neustart: `{}`.".format(timestamp))
 
 def setup(bot):
 	bot.add_cog(SinceCog(bot))

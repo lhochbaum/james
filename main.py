@@ -16,9 +16,8 @@ bot = commands.Bot(command_prefix='!', description=description)
 
 # small command printing the repo URL.
 @bot.command()
-@asyncio.coroutine
-def source():
-	yield from bot.say("https://github.com/lhochbaum/james")
+async def source(ctx):
+	await ctx.message.channel.send("https://github.com/lhochbaum/james")
 
 # remove the help command.
 bot.remove_command("help")
@@ -29,7 +28,6 @@ bot.load_extension("cogs.maimai")
 bot.load_extension("cogs.egirl")
 bot.load_extension("cogs.since")
 bot.load_extension("cogs.praise")
-bot.load_extension("cogs.fastdel")
 bot.load_extension("cogs.doubt")
 bot.load_extension("cogs.w2g")
 
